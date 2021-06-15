@@ -1,1 +1,84 @@
 //bill class
+
+package flight3;
+
+import static flight3.Airlines.arrloc;
+import static flight3.Airlines.ch;
+import static flight3.Airlines.choice;
+import static flight3.Airlines.choice2;
+import static flight3.Airlines.deploc;
+import static flight3.Airlines.deptime;
+import static flight3.Airlines.email;
+import static flight3.Airlines.finalprice;
+import static flight3.Airlines.fullname;
+import static flight3.Airlines.no;
+import static flight3.Airlines.phone;
+import static flight3.Airlines.selectedDates;
+import static flight3.Airlines.selectedFlight;
+import static flight3.Airlines.ss;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+class bill1 extends Airlines {
+    
+    public static void display(){
+/*        System.out.println("");
+        System.out.println("**********************************************************************************");
+        System.out.println("Thank you for your patience valued customer! The following are your flight details");
+        //System.out.println("\nFinal Bill:" );
+        System.out.println();
+        System.out.println("Name:                   " + fullname);
+        System.out.println("Email id:               " + email);
+        System.out.println("Phone number:           " + phone);
+        System.out.println("Departure Airport:      " + deploc[choice - 1]);
+        System.out.println("Destination Airport:    " + arrloc[choice2 - 1]);
+        System.out.println("Airline name:           " + airlines[ch - 1]);
+        System.out.println("Departure date:         " + choiceDate);
+        System.out.println("Departure time:         " + deptime[ch - 1]);
+        System.out.println("No. of seats:           " + no);
+        System.out.println("Flight tickets:         RM " + finalprice);
+        System.out.println("**********************************************************************************");
+        System.out.println("");
+*/        
+        //write txt file
+        try {
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream("FinalBill.txt")); 
+            
+            outputStream.println("**********************************************************************************");
+            outputStream.println("Thank you for your patience valued customer! The following are your flight details;\n");
+            outputStream.println("Name:                   " + fullname);
+            outputStream.println("Email id:               " + email);
+            outputStream.println("Phone number:           " + phone);
+            outputStream.println("Departure Airport:      " + deploc[choice - 1]);
+            outputStream.println("Destination Airport:    " + arrloc[choice2 - 1]);
+            outputStream.println("Airline name:           " + selectedFlight);
+            outputStream.println("Departure date:         " + selectedDates);
+            outputStream.println("Departure time:         " + deptime[ch - 1]);
+            outputStream.println("No. of seats:           " + no);
+            outputStream.println("Seats address:          " + ss[no]);
+            outputStream.println("Flight tickets:         RM " + finalprice);
+            outputStream.println("**********************************************************************************");
+            
+            outputStream.close();
+        }catch(IOException exception) {
+            System.out.println("Problem with file output"); 
+        }
+        
+        //read txt file
+        try {
+            Scanner inputStream = new Scanner(new FileInputStream("FinalBill.txt"));
+           
+            while (inputStream.hasNextLine()) {
+                String line = inputStream.nextLine();
+                System.out.println(line + " ");
+            }
+            inputStream.close();
+        }catch(FileNotFoundException e) {
+            System.out.println("File is not found");
+        }
+    }
+}
